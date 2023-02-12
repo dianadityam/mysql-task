@@ -7,7 +7,7 @@ const db = require('../../config/database');
 const sequelize = require('sequelize');
 const upload = multer({dest: 'uploads'});
 
-router.get('/', async (req, res) => {
+router.get('/product', async (req, res) => {
     const {search} = req.query;
     let productSearch = '';
     if(search) {
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/product/:id', async (req, res) => {
     const id = req.params.id;
     const products = await Product.findByPk(id);
     try {
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.put('/:id', upload.single('image'), async (req, res) => {
+router.put('/product/:id', upload.single('image'), async (req, res) => {
     const id = req.params.id;
     const products = await Product.findByPk(id);
     const image = req.file;
@@ -61,7 +61,7 @@ router.put('/:id', upload.single('image'), async (req, res) => {
     }
 })
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/product', upload.single('image'), async (req, res) => {
     const {users_id, name, price, stock, status} = req.body;
     const image = req.file;
     if(image) {
@@ -77,7 +77,7 @@ router.post('/', upload.single('image'), async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/product/:id', async (req, res) => {
     const id = req.params.id;
     const products = await Product.findByPk(id);
     try {
