@@ -1,10 +1,11 @@
 const {Sequelize} = require('sequelize');
 
 const sequelize =  new Sequelize({
-    database: 'railway',
-    host: 'containers-us-west-129.railway.app',
-    username: 'root',
-    password: 'pzdblPc3svvpE4LPUQqU',
+    database: process.env.DATABASE,
+    host: process.env.DB_HOST,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
     dialect: 'mysql'
 });
 
