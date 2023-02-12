@@ -70,7 +70,7 @@ router.post('/product', upload.single('image'), async (req, res) => {
     }
     try {
         await Product.sync();
-        const result = await Product.create({users_id, name, price, stock, status, image_url: `http://localhost:3000/public/${image.originalname}`});
+        const result = await Product.create({users_id, name, price, stock, status, image_url: `http://localhost:${process.env.PORT}/public/${image.originalname}`});
         res.send(result);
     } catch(err) {
         res.send(err);
